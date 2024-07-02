@@ -25,7 +25,7 @@ describe('math', () => {
   });
   describe('multiply', () => {
     it('should multiply positive numbers', () => {
-      //AAA - arrange, act, assert
+      //AAA - arrange, act, asser
 
       const expectedResult = 6; //arrange
 
