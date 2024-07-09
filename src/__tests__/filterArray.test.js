@@ -5,10 +5,11 @@ import {
 import { filterArray } from '../filterArray';
 
 const cb = jest.fn();
+const logSpy = jest.spyOn(console, 'log');
 
 describe('filterArray', () => {
   afterEach(() => {
-    cb.mockClear();
+    jest.clearAllMocks();
   });
   it('should invoke provided function as many time as length of an array', () => {
     const arr = [1, 2, 3];
@@ -21,6 +22,8 @@ describe('filterArray', () => {
     filterArray([], cb);
 
     expect(cb).not.toHaveBeenCalled();
+
+    expect(logSpy).not.toHaveBeenCalled();
   });
 
   it('should filter an array using provided predicate', () => {
@@ -29,5 +32,7 @@ describe('filterArray', () => {
     const result = filterArray(basketWithNoQuantity, hasQuantity);
 
     expect(result).toEqual(filteredBasketWithQuantityOnly);
+
+    expect(logSpy).toHaveBeenCalledTimes(basketWithNoQuantity.length);
   });
 });
