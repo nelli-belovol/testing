@@ -55,9 +55,30 @@ describe('createTodo', () => {
     async () => {
       fetch.mockResolvedValueOnce({ ok: fasle });
 
-      await expect(createTodoOnServer('My todo')).rejects.toMatch(
-        'Cannot create todo',
-      );
+      // await expect(createTodoOnServer('My todo')).rejects.toMatch(
+      //   'Cannot create todo',
+      // );
+      const fnToThrow = () => createTodoOnServer('My todo');
+      expect(fnToThrow).toThrow('Cannot create todo');
     };
+  });
+
+  //проверка на пустой аргумент
+
+  // it('should thow an error when no valid title is provided', () => {
+  //   const fnToThrow = () => createTodoOnServer('');
+  //   expect(fnToThrow).rejects.toThrow('Title is required');
+  // });
+
+  //ИЛИ
+
+  it('should thow an error when no valid title is provided', done => {
+    try {
+      createTodo('');
+      done('createTodo should throw an error for valid values');
+    } catch (error) {
+      expect(error.message).toBe('Title is required');
+      done();
+    }
   });
 });
