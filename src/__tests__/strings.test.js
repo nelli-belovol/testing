@@ -1,6 +1,6 @@
-import { toLower, toUpper, len } from './strings';
+import { toLower, toUpper, len } from '../strings';
 
-describe.only('strings', () => {
+describe('strings', () => {
   it.each([
     { str: 'Hello world', expected: 'HELLO WORLD' },
     { str: 'Testing', expected: 'TESTING' },

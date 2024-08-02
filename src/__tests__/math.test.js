@@ -1,7 +1,7 @@
-import { divide, multiply, sum } from './math';
+import { divide, multiply, sum } from '../math';
 
 describe('math', () => {
-  describe.only('divide', () => {
+  describe('divide', () => {
     it.each([
       { inputA: 6, inputB: 3, expected: 2 },
       { inputA: 10, inputB: 0, expected: Infinity },

@@ -2,34 +2,30 @@ import axios from 'axios';
 import { getTodos } from '../getTodos';
 
 const axiosSpy = jest.spyOn(axios, 'get');
-const errorSpy = jest.spyOn(console, 'error');
+const errorSpy = jest.spyOn(console, 'log');
 
 describe('getTodos', () => {
   afterEach(() => {
     jest.clearAllMocks();
   });
-  it('should return an empty array in case of error and print the error in the console', () => {
-    async () => {
-      const errMessage = 'error';
+  it('should return an empty array in case of error and print the error in the console', async () => {
+    const errMessage = 'error';
 
-      // axiosSpy.getMockImplementationOnce(() => {
-      //   Promise.reject(errMessage);
-      // });
+    // axiosSpy.getMockImplementationOnce(() => {
+    //   Promise.reject(errMessage);
+    // });
 
-      axiosSpy.mockRejectedValueOnce(errMessage);
+    axiosSpy.mockRejectedValueOnce(errMessage);
 
-      const result = await getTodos();
+    const result = await getTodos();
 
-      expect(errorSpy).toHaveBeenCalledWith(errMessage);
+    expect(errorSpy).toHaveBeenCalledWith(errMessage);
 
-      expect(result).toEqual([]);
-    };
+    expect(result).toEqual([]);
   });
-  it('should return 200 todos using axios get', () => {
-    async () => {
-      const result = await getTodos();
+  it('should return 200 todos using axios get', async () => {
+    const result = await getTodos();
 
-      expect(result).toHaveLength(200);
-    };
+    expect(result).toHaveLength(200);
   });
 });

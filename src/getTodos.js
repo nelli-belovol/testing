@@ -5,7 +5,7 @@ export async function getTodos() {
     const response = await axios.get(
       'https://jsonplaceholder.typicode.com/todos',
     );
-    return data;
+    return response.data;
   } catch (error) {
     console.log(error);
     return [];

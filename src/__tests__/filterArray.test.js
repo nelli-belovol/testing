@@ -28,7 +28,6 @@ describe('filterArray', () => {
 
   it('should filter an array using provided predicate', () => {
     const hasQuantity = order => order.qty > 0;
-
     const result = filterArray(basketWithNoQuantity, hasQuantity);
 
     expect(result).toEqual(filteredBasketWithQuantityOnly);
